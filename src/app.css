@@ -1,195 +1,120 @@
 @import 'tailwindcss';
-@import '@fontsource/fira-mono';
 @import 'tw-animate-css';
 @import 'shadcn-svelte/tailwind.css';
 @import '@fontsource-variable/inter';
+@import '@fontsource/anton';
+@import '@fontsource/caveat';
 
+/* `.dark` on any element switches everything inside it to the dark palette.
+   Used for the black "arena" sections (hero, tickets, footer). */
 @custom-variant dark (&:is(.dark *));
 
+/* ---------------------------------------------------------------
+   Love First brand palette (from the conference flyer):
+   red, pink, black, white — with gold and basketball orange accents.
+   --------------------------------------------------------------- */
 :root {
-  font-family:
-    Arial,
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    Oxygen,
-    Ubuntu,
-    Cantarell,
-    'Open Sans',
-    'Helvetica Neue',
-    sans-serif;
-  --font-mono: 'Fira Mono', monospace;
-  --pure-white: #ffffff;
-  --primary-color: #b9c6d2;
-  --secondary-color: #d0dde9;
-  --tertiary-color: #edf0f8;
-  --accent-color: #ff3e00;
-  --heading-color: rgba(0, 0, 0, 0.7);
-  --text-color: #444444;
-  --background-without-opacity: rgba(255, 255, 255, 0.7);
-  --column-width: 42rem;
-  --column-margin-top: 4rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-}
+  --brand-red: #b80018; /* matches the previous conference site */
+  --brand-red-deep: #7f0011;
+  --brand-pink: #f06292;
+  --brand-pink-soft: #fce4ec;
+  --brand-gold: #e9c46a;
+  --brand-cream: #f5e9d3;
+  --brand-court: #d9772b;
+  --brand-ink: #0b0b0d;
 
-body {
-  min-height: 100vh;
-  margin: 0;
-  background-color: var(--primary-color);
-  background: linear-gradient(
-    180deg,
-    var(--primary-color) 0%,
-    var(--secondary-color) 10.45%,
-    var(--tertiary-color) 41.35%
-  );
-}
+  --background: #ffffff;
+  --foreground: #141414;
+  --card: #ffffff;
+  --card-foreground: #141414;
+  --popover: #ffffff;
+  --popover-foreground: #141414;
+  --primary: var(--brand-red);
+  --primary-foreground: #ffffff;
+  --secondary: var(--brand-pink-soft);
+  --secondary-foreground: var(--brand-red-deep);
+  --muted: #f7f3f4;
+  --muted-foreground: #6b6266;
+  --accent: var(--brand-pink-soft);
+  --accent-foreground: var(--brand-red-deep);
+  --destructive: #dc2626;
+  --border: #ecdfe3;
+  --input: #e4d5da;
+  --ring: var(--brand-pink);
+  --chart-1: var(--brand-red);
+  --chart-2: var(--brand-pink);
+  --chart-3: var(--brand-gold);
+  --chart-4: var(--brand-court);
+  --chart-5: #141414;
+  --radius: 0.75rem;
+  --sidebar: #fdf8f9;
+  --sidebar-foreground: #141414;
+  --sidebar-primary: var(--brand-red);
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: var(--brand-pink-soft);
+  --sidebar-accent-foreground: var(--brand-red-deep);
+  --sidebar-border: #ecdfe3;
+  --sidebar-ring: var(--brand-pink);
 
-body::before {
-  content: '';
-  width: 80vw;
-  height: 100vh;
-  position: absolute;
-  top: 0;
-  left: 10vw;
-  z-index: -1;
-  background: radial-gradient(
-    50% 50% at 50% 50%,
-    var(--pure-white) 0%,
-    rgba(255, 255, 255, 0) 100%
-  );
-  opacity: 0.05;
-}
-
-#svelte {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-h1,
-h2,
-p {
-  font-weight: 400;
-  color: var(--heading-color);
-}
-
-p {
-  line-height: 1.5;
-}
-
-a {
-  color: var(--accent-color);
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-h1 {
-  font-size: 2rem;
-  text-align: center;
-}
-
-h2 {
-  font-size: 1rem;
-}
-
-pre {
-  font-size: 16px;
-  font-family: var(--font-mono);
-  background-color: rgba(255, 255, 255, 0.45);
-  border-radius: 3px;
-  box-shadow: 2px 2px 6px rgb(255 255 255 / 25%);
-  padding: 0.5em;
-  overflow-x: auto;
-  color: var(--text-color);
-}
-
-input,
-button {
-  font-size: inherit;
-  font-family: inherit;
-}
-
-button:focus:not(:focus-visible) {
-  outline: none;
-}
-
-@media (min-width: 720px) {
-  h1 {
-    font-size: 2.4rem;
-  }
+  /* Elevation: warm-tinted so cards lift off white and pink backgrounds. */
+  --elevation-card: 0 1px 2px rgb(40 0 8 / 0.05), 0 10px 28px -8px rgb(40 0 8 / 0.18);
+  --elevation-card-hover: 0 2px 4px rgb(40 0 8 / 0.06), 0 18px 40px -10px rgb(40 0 8 / 0.26);
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --background: var(--brand-ink);
+  --foreground: #fafafa;
+  --card: #16151a;
+  --card-foreground: #fafafa;
+  --popover: #16151a;
+  --popover-foreground: #fafafa;
+  --primary: var(--brand-red);
+  --primary-foreground: #ffffff;
+  --secondary: #2a1a1f;
+  --secondary-foreground: var(--brand-pink-soft);
+  --muted: #1e1c21;
+  --muted-foreground: #b8afb3;
+  --accent: #3a1622;
+  --accent-foreground: var(--brand-pink-soft);
+  --destructive: #f87171;
+  --border: rgb(255 255 255 / 12%);
+  --input: rgb(255 255 255 / 16%);
+  --ring: var(--brand-pink);
+  --sidebar: #16151a;
+  --sidebar-foreground: #fafafa;
+  --sidebar-primary: var(--brand-red);
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #3a1622;
+  --sidebar-accent-foreground: var(--brand-pink-soft);
+  --sidebar-border: rgb(255 255 255 / 12%);
+  --sidebar-ring: var(--brand-pink);
+
+  --elevation-card: 0 1px 2px rgb(0 0 0 / 0.5), 0 14px 36px -10px rgb(0 0 0 / 0.8);
+  --elevation-card-hover: 0 2px 4px rgb(0 0 0 / 0.5), 0 22px 48px -12px rgb(0 0 0 / 0.9);
+}
+
+/* Card elevation (adapts to light/dark sections). */
+@utility shadow-card {
+  box-shadow: var(--elevation-card);
+}
+@utility shadow-card-hover {
+  box-shadow: var(--elevation-card-hover);
 }
 
 @theme inline {
-  --font-sans: 'Inter Variable', sans-serif;
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Anton', 'Impact', 'Arial Narrow', sans-serif;
+  --font-script: 'Caveat', 'Segoe Print', cursive;
+
+  --color-brand-red: var(--brand-red);
+  --color-brand-red-deep: var(--brand-red-deep);
+  --color-brand-pink: var(--brand-pink);
+  --color-brand-pink-soft: var(--brand-pink-soft);
+  --color-brand-gold: var(--brand-gold);
+  --color-brand-cream: var(--brand-cream);
+  --color-brand-court: var(--brand-court);
+  --color-brand-ink: var(--brand-ink);
+
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -234,10 +159,43 @@ button:focus:not(:focus-visible) {
   * {
     @apply border-border outline-ring/50;
   }
-  body {
-    @apply bg-background text-foreground;
-  }
   html {
     @apply font-sans;
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+  /* `.dark` sections need their own background + text colour, since body sets the light ones. */
+  .dark {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  /* Black arena background with spotlight glow, echoing the flyer. */
+  .arena {
+    background:
+      radial-gradient(ellipse 70% 55% at 50% -10%, rgb(240 98 146 / 0.22), transparent 70%),
+      radial-gradient(ellipse 35% 40% at 8% 0%, rgb(233 196 106 / 0.14), transparent 70%),
+      radial-gradient(ellipse 35% 40% at 92% 0%, rgb(233 196 106 / 0.14), transparent 70%),
+      var(--brand-ink);
+  }
+
+  /* Thin gold rule, like the trim on the flyer's ticket panels. */
+  .gold-rule {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--brand-gold), transparent);
+  }
+
+  .section-eyebrow {
+    @apply text-sm font-semibold tracking-[0.25em] text-primary uppercase;
+  }
+  .dark .section-eyebrow {
+    @apply text-brand-pink;
+  }
+
+  .section-title {
+    @apply font-display text-4xl tracking-wide uppercase sm:text-5xl;
   }
 }

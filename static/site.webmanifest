@@ -1,0 +1,13 @@
+{
+  "name": "Love First Marriage Conference",
+  "short_name": "Love First",
+  "description": "A two-day Christian marriage conference at Love First Christian Center in Riverview, FL.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#0b0b0d",
+  "theme_color": "#0b0b0d",
+  "icons": [
+    { "src": "/brand/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

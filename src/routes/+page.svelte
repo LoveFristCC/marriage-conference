@@ -1,60 +1,44 @@
 <script>
-  import Counter from '#lib/Counter.svelte';
-  import { Button } from '#lib/components/ui/button/index.js';
+  import Seo from '#lib/components/Seo.svelte';
+  import Hero from '#lib/sections/Hero.svelte';
+  import About from '#lib/sections/About.svelte';
+  import Hosts from '#lib/sections/Hosts.svelte';
+  import Tickets from '#lib/sections/Tickets.svelte';
+  import Details from '#lib/sections/Details.svelte';
+  import Faq from '#lib/sections/Faq.svelte';
+  import Contact from '#lib/sections/Contact.svelte';
+  import Classes from '#lib/sections/Classes.svelte';
+  import Playbook from '#lib/sections/Playbook.svelte';
+  import { faqs, site } from '#lib/content.js';
+  import {
+    conferenceEvent,
+    faqPage,
+    graph,
+    organization,
+    webPage,
+    website
+  } from '#lib/seo/schema.js';
+
+  /** @type {import('./$types').PageProps} */
+  let { form } = $props();
+
+  const jsonLd = graph(
+    organization(),
+    website(),
+    webPage({ path: '/', name: site.title, description: site.description }),
+    conferenceEvent(),
+    faqPage(faqs)
+  );
 </script>
 
-<svelte:head>
-  <title>Home</title>
-  <meta name="description" content="Svelte demo app" />
-</svelte:head>
+<Seo path="/" {jsonLd} />
 
-<section>
-  <h1>
-    <span class="welcome">
-      <picture>
-        <source srcset="svelte-welcome.webp" type="image/webp" />
-        <img src="svelte-welcome.png" alt="Welcome" />
-      </picture>
-    </span>
-
-    to your new<br />SvelteKit app
-  </h1>
-
-  <h2>
-    try editing <strong>src/routes/+page.svelte</strong>
-  </h2>
-
-  <Counter />
-
-  <Button href="/about">shadcn-svelte button</Button>
-</section>
-
-<style>
-  section {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    flex: 1;
-  }
-
-  h1 {
-    width: 100%;
-  }
-
-  .welcome {
-    display: block;
-    position: relative;
-    width: 100%;
-    height: 0;
-    padding: 0 0 calc(100% * 495 / 2048) 0;
-  }
-
-  .welcome img {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    display: block;
-  }
-</style>
+<Hero />
+<About />
+<Hosts />
+<Tickets />
+<Details />
+<Classes />
+<Faq items={faqs} />
+<Playbook />
+<Contact {form} />

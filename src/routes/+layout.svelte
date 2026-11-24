@@ -1,48 +1,26 @@
 <script>
-  import Header from '#lib/header/Header.svelte';
   import '../app.css';
+  import { Toaster } from '#lib/components/ui/sonner/index.js';
+  import SiteHeader from '#lib/sections/SiteHeader.svelte';
+  import SiteFooter from '#lib/sections/SiteFooter.svelte';
 
   /** @type {{ children: import('svelte').Snippet }} */
   let { children } = $props();
 </script>
 
-<Header />
+<a
+  href="#main"
+  class="sr-only z-50 rounded-md bg-primary px-4 py-2 text-primary-foreground focus:not-sr-only focus:fixed focus:top-2 focus:left-2"
+>
+  Skip to content
+</a>
 
-<main>
-  {@render children()}
-</main>
+<div class="flex min-h-svh flex-col">
+  <SiteHeader />
+  <main id="main" class="flex-1">
+    {@render children()}
+  </main>
+  <SiteFooter />
+</div>
 
-<footer>
-  <p>visit <a href="https://svelte.dev/docs/kit">kit.svelte.dev</a> to learn SvelteKit</p>
-</footer>
-
-<style>
-  main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
-    width: 100%;
-    max-width: 1024px;
-    margin: 0 auto;
-    box-sizing: border-box;
-  }
-
-  footer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 40px;
-  }
-
-  footer a {
-    font-weight: bold;
-  }
-
-  @media (min-width: 480px) {
-    footer {
-      padding: 40px 0;
-    }
-  }
-</style>
+<Toaster richColors position="top-center" />
